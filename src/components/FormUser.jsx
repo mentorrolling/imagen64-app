@@ -1,8 +1,8 @@
 import React from "react";
 
-const FormUser = ({ formValues, handleChange }) => {
+const FormUser = ({ formValues, handleChange, handleSubmit }) => {
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label>Nombre:</label>
         <input
@@ -12,6 +12,7 @@ const FormUser = ({ formValues, handleChange }) => {
           autoComplete="off"
           value={formValues.nombre}
           onChange={handleChange}
+          required
         />
       </div>
       <div className="form-group">
@@ -23,6 +24,7 @@ const FormUser = ({ formValues, handleChange }) => {
           autoComplete="off"
           value={formValues.usuario}
           onChange={handleChange}
+          required
         />
       </div>
       <div className="form-group">
@@ -34,6 +36,7 @@ const FormUser = ({ formValues, handleChange }) => {
           autoComplete="off"
           value={formValues.email}
           onChange={handleChange}
+          required
         />
       </div>
       <div className="form-group">
@@ -45,6 +48,7 @@ const FormUser = ({ formValues, handleChange }) => {
           autoComplete="off"
           value={formValues.password}
           onChange={handleChange}
+          required
         />
       </div>
 

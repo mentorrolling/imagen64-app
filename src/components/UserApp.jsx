@@ -28,8 +28,25 @@ const UserApp = () => {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    localStorage.setItem("usuario", JSON.stringify(formValues));
+    resetForm();
+  };
+
+  const resetForm = () => {
+    setFormValues({
+      nombre: "",
+      usuario: "",
+      email: "",
+      password: "",
+      img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx_7XSeoV5uoxiFIbSEg9QT-YT7TFqgvuxag&usqp=CAU",
+    });
+    setstate("");
+  };
+
   return (
-    <div className="container">
+    <div className="container mb-3">
       <div className="row">
         <div className="col">
           <h1>
@@ -44,7 +61,11 @@ const UserApp = () => {
           <FormBase64 setstate={setstate} />
         </div>
         <div className="col-md-4">
-          <FormUser formValues={formValues} handleChange={handleChange} />
+          <FormUser
+            formValues={formValues}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+          />
         </div>
       </div>
     </div>
