@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import FormBase64 from "./FormBase64";
 import FormUser from "./FormUser";
 const UserApp = () => {
+  const history = useHistory();
   const [state, setstate] = useState("");
+  const [usuarios, setUsuarios] = useState([]);
 
   const [formValues, setFormValues] = useState({
     nombre: "",
@@ -21,6 +24,10 @@ const UserApp = () => {
     }
   }, [state]);
 
+  useEffect(() => {
+    localStorage.setItem("usuarios", JSON.stringify(usuarios));
+  }, [usuarios]);
+
   const handleChange = (e) => {
     setFormValues({
       ...formValues,
@@ -30,8 +37,11 @@ const UserApp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    localStorage.setItem("usuario", JSON.stringify(formValues));
+    console.log(usuarios);
+    setUsuarios([...usuarios, formValues]);
+
     resetForm();
+    history.push("/");
   };
 
   const resetForm = () => {
@@ -50,6 +60,11 @@ const UserApp = () => {
       <div className="row">
         <div className="col">
           <h1>
+            <small>
+              <Link to="/" className="text-decoration-none">
+                🔙
+              </Link>
+            </small>
             Registro <small>Usuario</small>
           </h1>
           <hr />
